@@ -14,8 +14,8 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 const userMock = {
-  email: 'email@test.com.br',
-  password: 'password test',
+  email: 'admin@admin.com',
+  password: '$2a$08$xi.Hxk1czAO0nZR..B393u10aED0RQ1N3PAEXQ7HxtLjKPEZBu.PW',
 }
 
 describe('Login', () => {
@@ -40,6 +40,21 @@ describe('Login', () => {
      expect(chaiHttpResponse.status).to.be.equal(200);
      expect(chaiHttpResponse.body).to.have.property('token');
    });
+
+  // Não funciona desse modo: 
+  //  it('Não é possível fazer login sem email ou senha corretos', async () => {
+  //   chaiHttpResponse = await chai
+  //      .request(app)
+  //      .post('/login')
+  //      .send({
+  //       email: userMock.email,
+  //       // password: 'wrong',
+  //     });
+
+  //   expect(chaiHttpResponse.status).to.be.equal(401);
+  //   expect(chaiHttpResponse.body).to.have.property('message');
+  //   expect(chaiHttpResponse.body.message).to.be.equal('Incorrect email or password');
+  // });
 
    it('Não é possível fazer login sem email ou senha', async () => {
     chaiHttpResponse = await chai
