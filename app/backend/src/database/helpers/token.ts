@@ -12,14 +12,11 @@ const jwtConfig: SignOptions = {
 
 class Token {
   static create(payload: ILogin) {
-    console.log('PAYLOAD', payload);
     const token = jwt.sign(payload, SECRET, jwtConfig);
-    console.log('token:', token);
     return token;
   }
 
   static decode(token: string) {
-    console.log('AQUIIIII DECODE');
     if (!token) {
       throw new BadRequest('error');
     }

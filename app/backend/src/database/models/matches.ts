@@ -40,7 +40,8 @@ Matches.init(
     },
   },
   {
-    modelName: 'matches', sequelize: db, timestamps: false,
+    // https://github.com/sequelize/sequelize/issues/10857 Importância do underscored
+    modelName: 'matches', sequelize: db, timestamps: false, underscored: true,
   },
 );
 
