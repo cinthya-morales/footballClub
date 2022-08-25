@@ -23,6 +23,7 @@
     "@istanbuljs/nyc-config-typescript": "1.0.2",
     "@types/bcryptjs": "2.4.2",
     "@types/chai": "4.3.0",
+    "@types/chai-arrays": "^2.0.0",
     "@types/chai-http": "4.2.0",
     "@types/cors": "2.8.12",
     "@types/express": "4.17.13",
@@ -53,6 +54,7 @@
   },
   "dependencies": {
     "bcryptjs": "2.4.3",
+    "chai-arrays": "^2.2.0",
     "cors": "2.8.5",
     "dotenv": "10.0.0",
     "express": "4.17.1",
