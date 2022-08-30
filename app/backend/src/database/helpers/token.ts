@@ -1,8 +1,8 @@
 import * as jwt from 'jsonwebtoken';
 import { SignOptions } from 'jsonwebtoken';
-import BadRequest from '../errors/BadRequest';
 import ILogin from '../interfaces/ILogin';
 import 'dotenv/config';
+import Unauthorized from '../errors/Unauthorized';
 
 const SECRET = process.env.SECRET || 'jwt_secret';
 const jwtConfig: SignOptions = {
@@ -17,10 +17,14 @@ class Token {
   }
 
   static decode(token: string) {
-    if (!token) {
-      throw new BadRequest('error');
+    try {
+      if (!token || token === '') {
+        throw new Unauthorized('Token must be a valid token');
+      }
+      return jwt.verify(token, SECRET);
+    } catch (e) {
+      throw new Unauthorized('Token must be a valid token');
     }
-    return jwt.verify(token, SECRET);
   }
 }
 
