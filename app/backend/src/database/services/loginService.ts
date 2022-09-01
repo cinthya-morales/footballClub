@@ -19,9 +19,7 @@ class LoginService {
 
   static async verifyLogin(token: string) {
     const user = Token.decode(token) as ILogin;
-    console.log('USER:', user);
     const userRole = await Users.findOne({ where: { email: user.email } }) as Users;
-    console.log(userRole);
     return { role: userRole.role };
   }
 }

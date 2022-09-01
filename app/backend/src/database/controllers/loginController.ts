@@ -21,10 +21,8 @@ class LoginController {
 
   static async validateToken(req: Request, res: Response, next: NextFunction) {
     try {
-      console.log('TO AQUI NO CONTROLLER');
       const token = req.headers.authorization || '';
       const role = await LoginService.verifyLogin(token);
-      console.log(role);
       return res.status(200).json(role);
     } catch (e) {
       if (e instanceof BadRequest) {

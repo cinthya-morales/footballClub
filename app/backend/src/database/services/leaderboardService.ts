@@ -2,13 +2,9 @@ import { IHomeMatch, IMatchGoals } from '../interfaces/IHomeMatch';
 import ILeaderboard from '../interfaces/ILeaderboard';
 import Matches from '../models/matches';
 import Teams from '../models/teams';
-// import ILeaderboard from '../interfaces/ILeaderboard';
-
-// const rawQuery2 = 'SELECT CAST(4 AS DECIMAL(4,3))';
-
-// const queryTest = 'SELECT * FROM `TRYBE_FUTEBOL_CLUBE.Teams`';
 
 class LeaderboardService {
+  // Obtendo a lista de partidas dos times da casa
   static async getHomeMatches() {
     const homeMatches = await Teams.findAll({
       include: [
@@ -23,7 +19,7 @@ class LeaderboardService {
     return homeMatches;
   }
 
-  // Obtendo a lista de classificação dos times
+  // Obtendo a lista de classificação dos times com base na lista da função getHomeMatches()
   static async getHomeScore() {
     const getHomeMatches = await this.getHomeMatches() as unknown as IHomeMatch[];
     const result = getHomeMatches.map(({ teamName, teamHome }) => {
@@ -54,7 +50,7 @@ class LeaderboardService {
       }
       return 1 as number;
     });
-    return points.reduce((a, b) => a + b);
+    return points.reduce((a, b) => a + b); // Somando os elemntos de uma lista
   }
 
   static getHomeVictories(matches: IMatchGoals[]) {
@@ -101,6 +97,7 @@ class LeaderboardService {
     return ((totalPoints / (totalGames * 3)) * 100).toFixed(2);
   }
 
+  // Ordernando o leaderBoard conforme os critérios de desempate
   static sortBoard(board: any) {
     return board.sort((a: any, b: any) => b.totalPoints - a.totalPoints
     || b.totalVictories - a.totalVictories
