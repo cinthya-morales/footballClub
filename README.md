@@ -27,3 +27,6 @@ $ npm install
 # Execute a aplicação em modo de desenvolvimento
 $ npm run dev
 ```
+
+
+<img src="https://github.com/cinthya-morales/footballClub/blob/cinthya-sd-019-c-trybe-futebol-clube/images/front-example.png" width="100%">
